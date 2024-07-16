@@ -4,17 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="manifest" href="/site.webmanifest">
-    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#000000">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="mask-icon" href="safari-pinned-tab.svg" color="#000000">
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="theme-color" content="#ffffff">
 
     <title>Of Grand Designs</title>
 
-    <!-- <link rel="stylesheet" href="styles.css"> -->
     <style>
         html, body {
             font-family: sans-serif;
@@ -72,7 +71,12 @@
             position:absolute;
         }
 
+        #fade {
+            z-index: 2;
+        }
+
         #rotate {
+            z-index: 1;
             opacity: 0;
         }
 
@@ -111,15 +115,15 @@
 <body>
     <div id="branding">
         <div id="logo">
-            <video id="rotate" class="no-select" loop muted>
-                <source src="ogd_logo_orthogonal_animated_512x512.webm" type="video/webm">
-                <source src="ogd_logo_orthogonal_animated_512x512.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-
             <video id="fade" class="no-select" muted>
                 <source src="ogd_logo_orthogonal_animated_transition_512x512.webm" type="video/webm">
                 <source src="ogd_logo_orthogonal_animated_transition_512x512.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+
+            <video id="rotate" class="no-select" loop muted>
+                <source src="ogd_logo_orthogonal_animated_512x512.webm" type="video/webm">
+                <source src="ogd_logo_orthogonal_animated_512x512.mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
         </div>
@@ -138,7 +142,6 @@
             fade.style.display = 'none';
 
             rotate.play();
-            rotate.style.opacity = 100;
         });
 
         var i = 0;
@@ -155,6 +158,7 @@
         }
 
         function start() {
+            rotate.style.opacity = 1;
             fade.play();
             type();
         }
