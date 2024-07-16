@@ -3,7 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Of Grand Designs - Virtual Business Card</title>
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#000000">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="theme-color" content="#ffffff">
+
+    <title>Of Grand Designs</title>
+
     <!-- <link rel="stylesheet" href="styles.css"> -->
     <style>
         html, body {
@@ -17,26 +27,14 @@
             height: 100%;
             overflow: hidden;
 
-            /* display: flex;
-            flex-direction: row;
-            justify-content: center;
-            align-items: center; */
-
             background: black;
             color: white;
         }
 
         body {
             display: flex;
-            /* flex-direction: row; */
             justify-content: center;
             align-items: center;
-
-            /* background: rgb(20,20,20);
-            background: -moz-radial-gradient(circle, rgba(20,20,20,1) 0%, rgba(0,0,0,1) 100%);
-            background: -webkit-radial-gradient(circle, rgba(20,20,20,1) 0%, rgba(0,0,0,1) 100%);
-            background: radial-gradient(circle, rgba(20,20,20,1) 0%, rgba(0,0,0,1) 100%);
-            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#141414",endColorstr="#000000",GradientType=1); */
         }
 
         #branding {
@@ -47,28 +45,10 @@
             justify-content: center;
             align-items: center;
 
-            /* padding:4px;
-            -webkit-border-radius: 8px;
-            -moz-border-radius: 8px;
-            border-radius: 8px; */
-
             padding:10px;
             -webkit-border-radius: 20px;
             -moz-border-radius: 20px;
             border-radius: 20px;
-
-            /* padding:50px;
-            -webkit-border-radius: 50%;
-            -moz-border-radius: 50%;
-            border-radius: 50%; */
-
-            /* -webkit-box-shadow: 10px 10px 5px 0px rgba(255,255,255,1);
-            -moz-box-shadow: 10px 10px 5px 0px rgba(255,255,255,1);
-            box-shadow: 10px 10px 5px 0px rgba(255,255,255,1); */
-            
-            /* border: 2px solid white;
-            border-radius: 20px; */
-
         }
 
         #logo {
@@ -85,10 +65,6 @@
         #rotate, #fade {
             position:absolute;
         }
-
-        /* #fade {
-            display:block;
-        } */
 
         #rotate {
             opacity: 0;
@@ -128,8 +104,8 @@
         var rotate = document.getElementById('rotate')
 
         fade.addEventListener('ended', function() {
-            // rotate.style.display = 'block';
             fade.style.display = 'none';
+            
             rotate.play();
             rotate.style.opacity = 100;
         });
