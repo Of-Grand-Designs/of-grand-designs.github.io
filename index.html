@@ -77,22 +77,22 @@
             height:256px;
         }
 
-        #rotate, #fade {
-            position:absolute;
-        }
-
         #logo video {
             width:256px;
             height:256px;
         }
 
-        /* #fade {
-            display:block;
+        #rotate, #fade {
+            position:absolute;
         }
 
-        #rotate {
-            display:none;
+        /* #fade {
+            display:block;
         } */
+
+        #rotate {
+            opacity: 0;
+        }
 
         #branding h1 {
             font-size: 28px;
@@ -107,15 +107,15 @@
 <body>
     <div id="branding">
         <div id="logo">
-            <video id="rotate" autoplay loop muted>
-                <source src="ogd_logo_orthogonal_animated_512x512.mp4" type="video/mp4">
+            <video id="rotate" loop muted>
                 <source src="ogd_logo_orthogonal_animated_512x512.webm" type="video/webm">
+                <source src="ogd_logo_orthogonal_animated_512x512.mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
 
             <video id="fade" autoplay muted>
-                <source src="ogd_logo_orthogonal_animated_transition_512x512.mp4" type="video/mp4">
                 <source src="ogd_logo_orthogonal_animated_transition_512x512.webm" type="video/webm">
+                <source src="ogd_logo_orthogonal_animated_transition_512x512.mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
         </div>
@@ -130,7 +130,8 @@
         fade.addEventListener('ended', function() {
             // rotate.style.display = 'block';
             fade.style.display = 'none';
-            // rotate.play();
+            rotate.play();
+            rotate.style.opacity = 100;
         });
     </script>
 </body>
