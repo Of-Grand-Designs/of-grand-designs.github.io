@@ -37,6 +37,12 @@
             align-items: center;
         }
 
+        .no-select {
+            -webkit-user-select: none; /* Safari */
+            -ms-user-select: none; /* IE 10 and IE 11 */
+            user-select: none; /* Standard syntax */
+        }
+
         #branding {
             background: black;
 
@@ -70,44 +76,91 @@
             opacity: 0;
         }
 
-        #branding h1 {
+        #title {
+            width:164px;
+            height:100px;
+
             font-size: 28px;
+            line-height:32px;
             text-transform: uppercase;
             margin:0px;
-            /* margin-left: -12px; */
             padding:0px;
-            padding-right: 48px;
+            padding-right: 36px;
+        }
+
+        .blink {
+            font-size:80%;
+            margin-top:-1px;
+            vertical-align: text-top;
+            animation: blink 0.75s steps(1, end) infinite;
+        }
+
+        @keyframes blink {
+            0% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
         }
     </style>
 </head>
 <body>
     <div id="branding">
         <div id="logo">
-            <video id="rotate" loop muted>
+            <video id="rotate" class="no-select" loop muted>
                 <source src="ogd_logo_orthogonal_animated_512x512.webm" type="video/webm">
                 <source src="ogd_logo_orthogonal_animated_512x512.mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
 
-            <video id="fade" autoplay muted>
+            <video id="fade" class="no-select" muted>
                 <source src="ogd_logo_orthogonal_animated_transition_512x512.webm" type="video/webm">
                 <source src="ogd_logo_orthogonal_animated_transition_512x512.mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
         </div>
 
-        <h1>Of<br/>Grand<br/>Designs</h1>
+        <h1 id="title" class="no-select">
+            <span id="title-text"></span>
+            <span class="blink">█</span>
+        </h1>
     </div>
 
     <script>
         var fade = document.getElementById('fade')
         var rotate = document.getElementById('rotate')
 
-        fade.addEventListener('ended', function() {
+        fade.addEventListener('ended', () => {
             fade.style.display = 'none';
-            
+
             rotate.play();
             rotate.style.opacity = 100;
+        });
+
+        var i = 0;
+        var txt = 'Of0Grand0Designs';
+        var speed = 100;
+
+        function type() {
+            if (i < txt.length) {
+                var currentChar = txt.charAt(i)
+                document.getElementById('title-text').innerHTML += currentChar == 0 ? '<br/>' : currentChar;
+                i++;
+                setTimeout(type, speed);
+            }
+        }
+
+        function start() {
+            fade.play();
+            type();
+        }
+
+        window.addEventListener("load", (event) => {
+            setTimeout(start, 500);
         });
     </script>
 </body>
