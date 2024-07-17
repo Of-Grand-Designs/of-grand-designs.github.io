@@ -42,24 +42,35 @@
             user-select: none; /* Standard syntax */
         }
 
+        .ease-in {
+            transition-property: all;
+            transition-duration: 1s;
+            transition-timing-function: ease-in-out;
+        }
+
         #branding {
-            background: black;
+            /* background: black; */
 
             display: flex;
             flex-direction: row;
             justify-content: center;
             align-items: center;
 
-            padding:10px;
+            /* padding:10px;
             -webkit-border-radius: 20px;
             -moz-border-radius: 20px;
-            border-radius: 20px;
+            border-radius: 20px; */
         }
 
         #logo {
-            display:inline-block;
+            display:block;
             width:256px;
             height:256px;
+
+            /* margin-right: -128px; */
+            /* margin-right: -105px; */
+            position:relative;
+            left:82px;
         }
 
         #logo video {
@@ -80,7 +91,23 @@
             opacity: 0;
         }
 
+        /* #branding h1 {
+
+            font-size: 28px;
+            line-height:32px;
+            text-transform: uppercase;
+            margin:0px;
+            padding:0px;
+            padding-right: 36px;
+
+            
+        } */
+
         #title {
+            /* display:none; */
+            display:block;
+            opacity: 0;
+
             width:164px;
             height:100px;
 
@@ -89,7 +116,35 @@
             text-transform: uppercase;
             margin:0px;
             padding:0px;
-            padding-right: 36px;
+            /* vertical-align: middle; */
+            /* padding-right: 36px; */
+
+            /* margin-left: -82px; */
+            /* margin-left: -105px; */
+            position:relative;
+            right:128px;
+        }
+
+        .snap {
+            animation: snap 1s ease-in-out;
+            animation-fill-mode: forwards;
+        }
+
+        @keyframes snap {
+            0% {
+                right:128px;
+                opacity: 0;
+            }
+            /* 70% {
+                right:-4px;
+            } */
+            /* 75% {
+                right:0px;
+            } */
+            100% {
+                right:0px;
+                opacity: 1;
+            }
         }
 
         .blink {
@@ -110,11 +165,28 @@
                 opacity: 1;
             }
         }
+
+        #test {
+            background:white;
+            width:10px;
+            height:10px;
+
+            z-index:10;
+
+            margin: 0;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+        }
     </style>
 </head>
 <body>
+    <!-- <div id="test"></div> -->
+
     <div id="branding">
-        <div id="logo">
+        <div id="logo" class="ease-in">
             <video id="fade" class="no-select" muted>
                 <source src="ogd_logo_orthogonal_animated_transition_512x512.webm" type="video/webm">
                 <source src="ogd_logo_orthogonal_animated_transition_512x512.mp4" type="video/mp4">
@@ -128,10 +200,11 @@
             </video>
         </div>
 
-        <h1 id="title" class="no-select">
+        <h1 id="title" class="no-select ease-in">Of<br/>Grand<br/>Designs</h1>
+        <!-- <h1 id="title" class="no-select">
             <span id="title-text"></span>
             <span class="blink">█</span>
-        </h1>
+        </h1> -->
     </div>
 
     <script>
@@ -139,28 +212,49 @@
         var rotate = document.getElementById('rotate')
 
         fade.addEventListener('ended', () => {
-            fade.style.display = 'none';
+            // fade.style.display = 'none';
+            fade.style.opacity = 0;
 
             rotate.play();
+
+            // document.getElementById('title').style.display = 'block';
+
+            // document.getElementById('logo').style.left = '0px';
+            // document.getElementById('title').style.right = '0px';
+            
         });
 
-        var i = 0;
-        var txt = 'Of0Grand0Designs';
-        var speed = 100;
+        // var i = 0;
+        // var txt = 'Of0Grand0Designs';
+        // var speed = 100;
 
-        function type() {
-            if (i < txt.length) {
-                var currentChar = txt.charAt(i)
-                document.getElementById('title-text').innerHTML += currentChar == 0 ? '<br/>' : currentChar;
-                i++;
-                setTimeout(type, speed);
-            }
-        }
+        // function type() {
+        //     if (i < txt.length) {
+        //         var currentChar = txt.charAt(i)
+        //         document.getElementById('title-text').innerHTML += currentChar == 0 ? '<br/>' : currentChar;
+        //         i++;
+        //         setTimeout(type, speed);
+        //     }
+        // }
 
         function start() {
             rotate.style.opacity = 1;
+            // document.getElementById('title').style.opacity = 1;
+
             fade.play();
-            type();
+            // type();
+
+            setTimeout(() => {
+                // document.getElementById('title').style.opacity = 1;
+                document.getElementById('logo').style.left = '0px';
+                // document.getElementById('title').style.right = '0px';
+                document.getElementById('title').classList.add("snap")
+
+
+                // setTimeout(() => {
+                //     document.getElementById('title').style.opacity = 1;
+                // }, 100);
+            }, 2000);
         }
 
         window.addEventListener("load", (event) => {
