@@ -114,55 +114,21 @@
                 opacity: 1;
             }
         }
-
-        .blink {
-            font-size:80%;
-            margin-top:-1px;
-            vertical-align: text-top;
-            animation: blink 0.75s steps(1, end) infinite;
-        }
-
-        @keyframes blink {
-            0% {
-                opacity: 1;
-            }
-            50% {
-                opacity: 0;
-            }
-            100% {
-                opacity: 1;
-            }
-        }
-
-        #test {
-            background:white;
-            width:10px;
-            height:10px;
-
-            z-index:10;
-
-            margin: 0;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            -ms-transform: translate(-50%, -50%);
-            transform: translate(-50%, -50%);
-        }
     </style>
 </head>
 <body>
 
     <div id="branding">
         <div id="logo" class="ease-in">
-            <video id="fade" class="no-select" muted>
-                <source src="ogd_logo_orthogonal_animated_transition_512x512.webm" type="video/webm">
-                <source src="ogd_logo_orthogonal_animated_transition_512x512.mp4" type="video/mp4">
+            <video id="fade" class="no-select" preload="auto" muted=true>
+                <source src="ogd_logo_orthogonal_animated_transition_512x512_optimized.webm" type="video/webm" />
+                <source src="ogd_logo_orthogonal_animated_transition_512x512_optimized.mp4" type="video/mp4" />
                 Your browser does not support the video tag.
             </video>
 
-            <video id="rotate" class="no-select" loop muted>
-                <source src="ogd_logo_orthogonal_animated_512x512.webm" type="video/webm">
-                <source src="ogd_logo_orthogonal_animated_512x512.mp4" type="video/mp4">
+            <video id="rotate" class="no-select" loop preload="auto" muted=true>
+                <source src="ogd_logo_orthogonal_animated_512x512_optimized.webm" type="video/webm" />
+                <source src="ogd_logo_orthogonal_animated_512x512_optimized.mp4" type="video/mp4" />
                 Your browser does not support the video tag.
             </video>
         </div>
